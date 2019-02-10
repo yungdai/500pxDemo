@@ -14,6 +14,7 @@
 		1A7C48BA2210803800014934 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A7C48B82210803800014934 /* LaunchScreen.storyboard */; };
 		1A7C48C52210803800014934 /* _00pxDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C48C42210803800014934 /* _00pxDemoTests.swift */; };
 		1A7C48D02210803800014934 /* _00pxDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C48CF2210803800014934 /* _00pxDemoUITests.swift */; };
+		1A7C48DF2210807C00014934 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C48DE2210807C00014934 /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		1A7C48CB2210803800014934 /* 500pxDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 500pxDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7C48CF2210803800014934 /* _00pxDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _00pxDemoUITests.swift; sourceTree = "<group>"; };
 		1A7C48D12210803800014934 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A7C48DE2210807C00014934 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		1A7C48AE2210803700014934 /* 500pxDemo */ = {
 			isa = PBXGroup;
 			children = (
+				1A7C48DD2210806800014934 /* APIKey */,
 				1A7C48AF2210803700014934 /* AppDelegate.swift */,
 				1A7C48B12210803700014934 /* ViewController.swift */,
 				1A7C48B32210803700014934 /* Main.storyboard */,
@@ -123,6 +126,14 @@
 				1A7C48D12210803800014934 /* Info.plist */,
 			);
 			path = 500pxDemoUITests;
+			sourceTree = "<group>";
+		};
+		1A7C48DD2210806800014934 /* APIKey */ = {
+			isa = PBXGroup;
+			children = (
+				1A7C48DE2210807C00014934 /* APIKey.swift */,
+			);
+			path = APIKey;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A7C48B22210803700014934 /* ViewController.swift in Sources */,
+				1A7C48DF2210807C00014934 /* APIKey.swift in Sources */,
 				1A7C48B02210803700014934 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +451,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "yungdai.com.-00pxDemo";
+				PRODUCT_BUNDLE_IDENTIFIER = yungdai.com.500pxDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,7 +469,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "yungdai.com.-00pxDemo";
+				PRODUCT_BUNDLE_IDENTIFIER = yungdai.com.500pxDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
