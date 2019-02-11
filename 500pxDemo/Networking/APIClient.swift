@@ -22,7 +22,7 @@ class APIClient {
     }
 	
 	/// Fetch a Response object from the server
-	func fetchResponse(with request: ResponseRequest, page: Int, completion: @escaping (Result<Response, HTTPResponseError>) -> Void) {
+	func fetchResponse(with request: ResponseRequest, page: Int, completion: @escaping (Result<PagedPhotoReponse, HTTPResponseError>) -> Void) {
 		
 		// create the url request
 		let urlRequest = URLRequest(url: baseURL.appendingPathComponent(APIKey))
@@ -48,9 +48,9 @@ class APIClient {
 		}.resume()
 	}
 	
-	private func parseResponseJSON(data: Data) -> Response? {
+	private func parseResponseJSON(data: Data) -> PagedPhotoReponse? {
 		
-		var response = Response()
+		var response = PagedPhotoReponse()
 		
 		do {
 			if let jsonData = try JSONSerialization.jsonObject(with: data, options: [.allowFragments, .mutableContainers]) as? [String: Any],
@@ -72,8 +72,9 @@ class APIClient {
 						photos.append(Photo(imageURL: urlArray))
 					}
 				}
-				
-				response = Response(currentPage: currentPage, totalPages: totalPages, totalItems: totalItems, photos: photos)
+
+				// TODO: Figure out hasMore pages
+				response = PagedPhotoReponse(currentPage: currentPage, totalPages: totalPages, totalItems: totalItems, photos: photos, hasMore: false)
 			}
 		} catch let error {
 			print("Error: \(error.localizedDescription)")

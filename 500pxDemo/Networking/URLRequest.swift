@@ -8,13 +8,13 @@
 
 import Foundation
 
-typealias Parameter = [String: String]
+typealias Parameters = [String: String]
 
 
 extension URLRequest {
     
     /// Use to encode a URL with Parameters returned from the API
-    func encode(with parameters: Parameter?) -> URLRequest {
+    func encode(with parameters: Parameters?) -> URLRequest {
     
         guard let parameters = parameters else { return self }
         
