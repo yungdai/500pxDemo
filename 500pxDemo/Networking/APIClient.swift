@@ -9,12 +9,7 @@
 import Foundation
 
 class APIClient {
-    
-    private lazy var baseURL: URL = {
-        return URL(string: "https://api.500px.com/v1/photos?feature=editors&page=2&consumer_key=")!
-    }()
-    
-    
+
     let session: URLSession
     
     init(session: URLSession = URLSession.shared) {
@@ -23,17 +18,21 @@ class APIClient {
 	
 	/// Fetch a Response object from the server
 	func fetchResponse(with request: ResponseRequest, page: Int, completion: @escaping (Result<PagedPhotoReponse, HTTPResponseError>) -> Void) {
-		
-		// create the url request
-		let urlRequest = URLRequest(url: baseURL.appendingPathComponent(APIKey))
-		
-		// TODO: Add parameters in case we want to pagenate
-		
+
+        
+        let urlString = "https://api.500px.com/v1/photos?feature=editors&page=\(page)&consumer_key=\(APIKey)/"
+        let url = URL(string: urlString)!
+        
+        print("fetching page: \(page)")
+        
+        let urlRequest = URLRequest(url: url)
+
 		session.dataTask(with: urlRequest) { data, response, error in
-			
+            
 			// validate response
 			guard let httpResponse = response as? HTTPURLResponse, httpResponse.isSuccessfullStatusCode, let data = data else {
 				completion(Result.error(HTTPResponseError.decoding))
+                
 				return
 			}
 			
@@ -51,11 +50,11 @@ class APIClient {
 	private func parseResponseJSON(data: Data) -> PagedPhotoReponse? {
 		
 		var response = PagedPhotoReponse()
-		
+
 		do {
 			if let jsonData = try JSONSerialization.jsonObject(with: data, options: [.allowFragments, .mutableContainers]) as? [String: Any],
 			let currentPage = jsonData["current_page"] as? Int,
-			let totalPages = jsonData["total_pagess"] as? Int,
+			let totalPages = jsonData["total_pages"] as? Int,
 			let totalItems = jsonData["total_items"] as? Int,
 			let photosArray = jsonData["photos"] as? Payload {
 				
@@ -64,12 +63,16 @@ class APIClient {
 				// process each photo
 				photosArray.forEach { objects in
 					
-					if let imageURLArray = objects["image_url"] as? String {
-						let urlArray = imageURLArray.compactMap {
+                    var urlArray = [URL]()
+                    
+                    let name = objects["name"] as? String ?? ""
+                    
+					if let imageURLArray = objects["image_url"] as? [String] {
+						urlArray = imageURLArray.compactMap {
 							URL(string: String(describing: $0))
 						}
 						
-						photos.append(Photo(imageURL: urlArray))
+						photos.append(Photo(imageURL: urlArray, name: name))
 					}
 				}
 

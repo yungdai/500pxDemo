@@ -65,6 +65,7 @@ final class PhotosViewModel {
 			// append new items to the photos list and information the delegate that there's data available
 			case .success(let response):
 				
+                print("success")
 				DispatchQueue.main.async {
 					
 					// incriment page number to retrieve.  The retrieval mechanism will continue to until we've received the full list of photos
@@ -76,11 +77,12 @@ final class PhotosViewModel {
 					self.photos.append(contentsOf: response.photos)
 					
 					if response.page > 1 {
-						
 						let indexPathsToReload = self.calculateIndexPathsToReload(from: response.photos)
 						self.delegate?.onFetchCompleted(with: indexPathsToReload)
 					} else {
-						self.delegate?.onFetchCompleted(with: .none)
+                        
+                        print("none")
+                        self.delegate?.onFetchCompleted(with: .none)
 					}
 					
 				}

@@ -13,20 +13,16 @@ class ShowcaseViewController: UIViewController {
 	// MARK: - Properties
 	fileprivate var showcaseCollectionVC: MasterCollectionViewController?
 	
-	var showcaseCollectionDataSource: ShowcaseCollectionDataSource!
-	var photosViewModel: PhotosViewModel!
+	var showcaseCollectionDataSource: ShowcaseCollectionDataSource?
 
-	override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        showcaseCollectionVC?.collectionView.delegate = showcaseCollectionDataSource
+//        showcaseCollectionVC?.collectionView.dataSource = showcaseCollectionDataSource
+//        showcaseCollectionVC?.collectionView.prefetchDataSource = showcaseCollectionDataSource
 
-		setupDataSource()
     }
-	
-	private func setupDataSource() {
-		
-		showcaseCollectionDataSource.collectionView = showcaseCollectionVC?.collectionView
-		showcaseCollectionDataSource.sourceVC = self
-	}
 
 	// MARK: Segues
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -35,10 +31,16 @@ class ShowcaseViewController: UIViewController {
 		if segue.identifier == "photoShowCase" {
 			
 			showcaseCollectionVC = segue.destination as? MasterCollectionViewController
-			
-			showcaseCollectionVC?.collectionView.delegate = showcaseCollectionDataSource
-			showcaseCollectionVC?.collectionView.dataSource = showcaseCollectionDataSource
-			
+
+            guard let collectionView = showcaseCollectionVC?.collectionView else {
+                print("Nope not collection view yet")
+                return
+            }
+
+			showcaseCollectionDataSource = ShowcaseCollectionDataSource(sourceVC: self, collectionView: collectionView)
+            showcaseCollectionVC?.collectionView.delegate = showcaseCollectionDataSource
+            showcaseCollectionVC?.collectionView.dataSource = showcaseCollectionDataSource
+            showcaseCollectionVC?.collectionView.prefetchDataSource = showcaseCollectionDataSource
 		}
 	}
 }

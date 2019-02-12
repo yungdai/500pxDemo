@@ -13,17 +13,17 @@ class PhotoCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var mainLabel: UILabel!
 	
 	override func prepareForReuse() {
-		self.prepareForReuse()
-	
+        super.prepareForReuse()
+        configure(with: .none)
 	}
 	
 	
-	// TODO: Impliment later to reset anything in the cell as it comes in and out of the collectionView
-//	override func awakeFromNib() {
-//		super.awakeFromNib()
-//
-//
-//	}
+//     TODO: Impliment later to reset anything in the cell as it comes in and out of the collectionView
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        configure(with: .none)
+    }
 	
 	func configure(with photo: Photo?) {
 		
@@ -31,7 +31,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
 			
 			// TODO: Change this to make it prettier and use different data later
 			mainLabel.alpha = 1
-			mainLabel.text =  photo.imageURL?.first?.absoluteString
+			mainLabel.text =  photo.name
 		} else {
 			mainLabel.alpha = 0
 		}

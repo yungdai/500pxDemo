@@ -29,8 +29,7 @@ extension ResponseRequest {
 	static func from(site: String)  -> ResponseRequest {
 		
 		// TODO: Figure out the params to add more later
-		let defaultParams = ["order": "desc"]
-		
+        let defaultParams = ["":""]
 		let params = ["site": "\(site)"].merging(defaultParams, uniquingKeysWith: +)
 		
 		return ResponseRequest(parameters: params)

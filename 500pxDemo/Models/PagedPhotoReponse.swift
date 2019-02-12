@@ -16,7 +16,7 @@ struct PagedPhotoReponse {
 	let hasMore: Bool
     let photos: [Photo]
 	
-	public init(currentPage: Int = 0, totalPages: Int = 0, totalItems: Int = 0, photos: [Photo] = [], hasMore: Bool = false) {
+	public init(currentPage: Int = 0, totalPages: Int = 0, totalItems: Int = 0, photos: [Photo] = [], hasMore: Bool = true) {
 		
 		self.page = currentPage
 		self.totalPages = totalPages
