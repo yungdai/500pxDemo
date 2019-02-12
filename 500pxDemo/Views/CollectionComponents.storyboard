@@ -31,19 +31,29 @@
                                     <rect key="frame" x="0.0" y="0.0" width="147" height="148"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fX-md-xYX">
-                                            <rect key="frame" x="52.5" y="63.5" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="udL-oL-S8T">
+                                            <rect key="frame" x="0.0" y="0.0" width="147" height="148"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fX-md-xYX">
+                                            <rect key="frame" x="5" y="120" width="137" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </view>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="udL-oL-S8T" secondAttribute="trailing" id="0ru-ok-qbi"/>
+                                    <constraint firstItem="udL-oL-S8T" firstAttribute="leading" secondItem="yjN-z0-Afr" secondAttribute="leading" id="CtP-D4-Bdh"/>
                                     <constraint firstItem="1fX-md-xYX" firstAttribute="centerX" secondItem="yjN-z0-Afr" secondAttribute="centerX" id="N8D-ej-etc"/>
-                                    <constraint firstItem="1fX-md-xYX" firstAttribute="centerY" secondItem="yjN-z0-Afr" secondAttribute="centerY" id="PCG-X5-UKB"/>
+                                    <constraint firstItem="1fX-md-xYX" firstAttribute="centerY" secondItem="yjN-z0-Afr" secondAttribute="centerY" multiplier="1.7" id="PCG-X5-UKB"/>
+                                    <constraint firstAttribute="bottom" secondItem="udL-oL-S8T" secondAttribute="bottom" id="SHw-fd-4Ed"/>
+                                    <constraint firstAttribute="trailing" secondItem="1fX-md-xYX" secondAttribute="trailing" constant="5" id="sMa-iR-0VW"/>
+                                    <constraint firstItem="udL-oL-S8T" firstAttribute="top" secondItem="yjN-z0-Afr" secondAttribute="top" id="siC-2Q-wb1"/>
+                                    <constraint firstItem="1fX-md-xYX" firstAttribute="leading" secondItem="yjN-z0-Afr" secondAttribute="leading" constant="5" id="z75-at-6Ls"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="image" destination="udL-oL-S8T" id="WvC-gW-wAA"/>
                                     <outlet property="mainLabel" destination="1fX-md-xYX" id="1od-g6-OEm"/>
                                 </connections>
                             </collectionViewCell>

@@ -15,6 +15,7 @@ struct Image {
     let httpsUrl: URL?
     let url: URL?
     
+    // Not sure if format will change from jpeg but it's a possibility
     public init(format: String = "jpeg", size: Int = 2, httpsUrl: URL? = nil, url: URL? = nil) {
         
         self.format = format

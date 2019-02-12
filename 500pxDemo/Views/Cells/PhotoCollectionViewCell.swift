@@ -11,7 +11,8 @@ import UIKit
 class PhotoCollectionViewCell: UICollectionViewCell {
 	
 	@IBOutlet weak var mainLabel: UILabel!
-	
+    @IBOutlet weak var image: UIImageView!
+    
 	override func prepareForReuse() {
         super.prepareForReuse()
         configure(with: .none)
@@ -28,11 +29,16 @@ class PhotoCollectionViewCell: UICollectionViewCell {
 	func configure(with photo: Photo?) {
 		
 		if let photo = photo {
-			
-			// TODO: Change this to make it prettier and use different data later
+
 			mainLabel.alpha = 1
+            
+            if let imageURL = photo.image.first?.url {
+                image.getImage(from: imageURL )
+            }
+            
 			mainLabel.text =  photo.name
 		} else {
+            
 			mainLabel.alpha = 0
 		}
 	}

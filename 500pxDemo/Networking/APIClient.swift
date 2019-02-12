@@ -85,7 +85,7 @@ class APIClient {
 		return response
 	}
     
-    
+    /// Parse the Image Data from a Payload object
     private func parseImageData(imageData: Payload) -> [Image] {
         
         var images = [Image]()

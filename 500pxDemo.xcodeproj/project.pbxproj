@@ -134,6 +134,7 @@
 			children = (
 				1A8B476622137F6200297543 /* Extensions */,
 				1A7C48ED2210A34600014934 /* Models */,
+				1A8B4767221388AA00297543 /* DataSources */,
 				1A7C48E12210826D00014934 /* Networking */,
 				9F6F205D2211E65800A13803 /* Views */,
 				9F6F20662211ECCB00A13803 /* ViewModels */,
@@ -197,7 +198,6 @@
 			children = (
 				1A7C48EE2210A3D100014934 /* PagedPhotoReponse.swift */,
 				1A7C48F02210A61500014934 /* Photo.swift */,
-				9F6F20642211EA9300A13803 /* ShowcaseCollectionDataSource.swift */,
 				1A8B4762221371FB00297543 /* Images.swift */,
 			);
 			path = Models;
@@ -210,6 +210,14 @@
 				1A8B476422137F5C00297543 /* UIImageView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1A8B4767221388AA00297543 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				9F6F20642211EA9300A13803 /* ShowcaseCollectionDataSource.swift */,
+			);
+			path = DataSources;
 			sourceTree = "<group>";
 		};
 		9F6F205D2211E65800A13803 /* Views */ = {
