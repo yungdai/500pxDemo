@@ -15,7 +15,7 @@ class ShowcaseCollectionDataSource: NSObject, UICollectionViewDelegate {
 	}
 
 	var photosViewModel: PhotosViewModel!
-
+    
     weak var sourceVC: UIViewController?
     weak var collectionView: UICollectionView?
 	

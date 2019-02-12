@@ -62,18 +62,17 @@ class APIClient {
 				
 				// process each photo
 				photosArray.forEach { objects in
-					
-                    var urlArray = [URL]()
                     
                     let name = objects["name"] as? String ?? ""
                     
-					if let imageURLArray = objects["image_url"] as? [String] {
-						urlArray = imageURLArray.compactMap {
-							URL(string: String(describing: $0))
-						}
-						
-						photos.append(Photo(imageURL: urlArray, name: name))
-					}
+                    var images = [Image]()
+                    
+                    if let imagesData = objects["images"] as? Payload {
+            
+                        images = parseImageData(imageData: imagesData)
+                    }
+                    
+                    photos.append(Photo(image: images, name: name))
 				}
 
 				// TODO: Figure out hasMore pages
@@ -85,4 +84,22 @@ class APIClient {
 		
 		return response
 	}
+    
+    
+    private func parseImageData(imageData: Payload) -> [Image] {
+        
+        var images = [Image]()
+        
+        imageData.forEach { object in
+
+            let format = object["format"] as? String ?? ""
+            let size = object["size"] as? Int ?? 1
+            let httpsURL = object["https_url"] as? String ?? ""
+            let url = object["url"] as? String ?? ""
+            
+            images.append(Image(format: format, size: size, httpsUrl: URL(string: httpsURL), url: URL(string: url)))
+        }
+        return images
+    }
 }
+

@@ -10,11 +10,12 @@ import Foundation
 
 struct Photo{
     
-	let imageURL: [URL]?
     let name: String
+    let image: [Image]
+    
 	
-    public init(imageURL: [URL]?, name: String = "") {
-		self.imageURL = imageURL
+    public init(image: [Image], name: String = "") {
+        self.image = image
         self.name = name
 	}
 }
