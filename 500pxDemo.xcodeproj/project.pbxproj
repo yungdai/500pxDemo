@@ -23,7 +23,6 @@
 		1A7C48EC2210870800014934 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C48EB2210870800014934 /* APIClient.swift */; };
 		1A7C48EF2210A3D100014934 /* PagedPhotoReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C48EE2210A3D100014934 /* PagedPhotoReponse.swift */; };
 		1A7C48F12210A61500014934 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C48F02210A61500014934 /* Photo.swift */; };
-		1A7C48F42210A9FE00014934 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C48F32210A9FE00014934 /* DateFormatter.swift */; };
 		9F6F205C2211D84A00A13803 /* ResponseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F205B2211D84A00A13803 /* ResponseRequest.swift */; };
 		9F6F20612211E6ED00A13803 /* CollectionComponents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F6F20602211E6ED00A13803 /* CollectionComponents.storyboard */; };
 		9F6F20632211E72C00A13803 /* MasterCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F20622211E72C00A13803 /* MasterCollectionViewController.swift */; };
@@ -72,7 +71,6 @@
 		1A7C48EB2210870800014934 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		1A7C48EE2210A3D100014934 /* PagedPhotoReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedPhotoReponse.swift; sourceTree = "<group>"; };
 		1A7C48F02210A61500014934 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
-		1A7C48F32210A9FE00014934 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		9F6F205B2211D84A00A13803 /* ResponseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseRequest.swift; sourceTree = "<group>"; };
 		9F6F20602211E6ED00A13803 /* CollectionComponents.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CollectionComponents.storyboard; sourceTree = "<group>"; };
 		9F6F20622211E72C00A13803 /* MasterCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterCollectionViewController.swift; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 		1A7C48F22210A9F000014934 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1A7C48F32210A9FE00014934 /* DateFormatter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -376,7 +373,6 @@
 				1A7C48B22210803700014934 /* ShowcaseViewController.swift in Sources */,
 				9F6F205C2211D84A00A13803 /* ResponseRequest.swift in Sources */,
 				1A7C48DF2210807C00014934 /* APIKey.swift in Sources */,
-				1A7C48F42210A9FE00014934 /* DateFormatter.swift in Sources */,
 				1A7C48E4221082E800014934 /* HTTPURLResponse.swift in Sources */,
 				1A7C48EF2210A3D100014934 /* PagedPhotoReponse.swift in Sources */,
 				9F6F206B2212081800A13803 /* PhotoCollectionViewCell.swift in Sources */,

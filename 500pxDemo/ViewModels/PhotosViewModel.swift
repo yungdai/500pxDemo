@@ -24,11 +24,9 @@ final class PhotosViewModel {
 	private var isFetchInProgress = false
 	
 	let apiClient = APIClient()
-	let request: ResponseRequest
 	
-	init(request: ResponseRequest, delegate: PhotosViewModelDelegate) {
-		
-		self.request = request
+	init(delegate: PhotosViewModelDelegate) {
+
 		self.delegate = delegate
 	}
 	
@@ -49,7 +47,7 @@ final class PhotosViewModel {
 		// we are now fetching
 		isFetchInProgress = true
 		
-		apiClient.fetchResponse(with: request, page: currentPage) { result in
+		apiClient.fetchResponse(page: currentPage) { result in
 			
 			switch result {
 				

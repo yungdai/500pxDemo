@@ -17,7 +17,7 @@ class APIClient {
     }
 	
 	/// Fetch a Response object from the server
-	func fetchResponse(with request: ResponseRequest, page: Int, completion: @escaping (Result<PagedPhotoReponse, HTTPResponseError>) -> Void) {
+	func fetchResponse(page: Int, completion: @escaping (Result<PagedPhotoReponse, HTTPResponseError>) -> Void) {
 
         
         let urlString = "https://api.500px.com/v1/photos?feature=editors&page=\(page)&consumer_key=\(APIKey)/"
@@ -86,6 +86,3 @@ class APIClient {
 		return response
 	}
 }
-
-
-//let parameterArray = [String(format: "%@=%@", "x_auth_mode", "client_auth"), String(format: "%@=%@", "x_auth_password", )]

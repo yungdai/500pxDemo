@@ -15,20 +15,17 @@ class ShowcaseCollectionDataSource: NSObject, UICollectionViewDelegate {
 	}
 
 	var photosViewModel: PhotosViewModel!
-    
+
     weak var sourceVC: UIViewController?
     weak var collectionView: UICollectionView?
-    let site: String = "https://api.500px.com/v1/photos?feature=editors&page=1&consumer_key="
 	
     required init(sourceVC: UIViewController, collectionView: UICollectionView) {
 		super.init()
 		
         self.sourceVC = sourceVC
         self.collectionView = collectionView
-		let request = ResponseRequest.from(site: site)
-        
-		photosViewModel = PhotosViewModel(request: request, delegate: self)
-		
+
+		photosViewModel = PhotosViewModel(delegate: self)
         photosViewModel.fetchPhotos()
         print("init data source")
     }
