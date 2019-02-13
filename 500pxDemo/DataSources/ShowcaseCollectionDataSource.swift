@@ -44,6 +44,9 @@ extension ShowcaseCollectionDataSource: UICollectionViewDataSource {
 		
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifiers.showCaseCell, for: indexPath) as! PhotoCollectionViewCell
 		
+        
+        
+        
 		// if no photos is received for the current cell, configure for empty cell
 		if isLoadingCell(for: indexPath) {
 			cell.configure(with: .none)
@@ -55,8 +58,26 @@ extension ShowcaseCollectionDataSource: UICollectionViewDataSource {
 		}
 
 		return cell
-	}
+    }
+}
+
+extension ShowcaseCollectionDataSource: UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let height = collectionView.bounds.height * 0.75
+        let width = collectionView.bounds.width * 0.95
+
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
 }
 
 

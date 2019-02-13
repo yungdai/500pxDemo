@@ -15,14 +15,16 @@ class ShowcaseViewController: UIViewController {
 	
 	var showcaseCollectionDataSource: ShowcaseCollectionDataSource?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-//        showcaseCollectionVC?.collectionView.delegate = showcaseCollectionDataSource
-//        showcaseCollectionVC?.collectionView.dataSource = showcaseCollectionDataSource
-//        showcaseCollectionVC?.collectionView.prefetchDataSource = showcaseCollectionDataSource
-
-    }
+    
+    // TODO: Possibly remove it the viewDidLoad() Delegate function recompletely
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+////        showcaseCollectionVC?.collectionView.delegate = showcaseCollectionDataSource
+////        showcaseCollectionVC?.collectionView.dataSource = showcaseCollectionDataSource
+////        showcaseCollectionVC?.collectionView.prefetchDataSource = showcaseCollectionDataSource
+//
+//    }
 
 	// MARK: Segues
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
