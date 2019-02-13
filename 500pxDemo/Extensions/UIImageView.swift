@@ -26,4 +26,10 @@ extension UIImageView {
             }
             }.resume()
     }
+    
+    func convertToCircle() {
+        
+        layer.cornerRadius = bounds.width / 2
+        layer.masksToBounds = true
+    }
 }

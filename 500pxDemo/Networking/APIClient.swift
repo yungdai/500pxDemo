@@ -63,8 +63,12 @@ class APIClient {
 				var photos = [Photo]()
                 
                 // Since we get 20 at a time if there's less we're probably near the end
+                // TODO: See notes below this causes a crash right now and will need to be fix
                 let hasMore = !(photos.count < 20)
 				
+                if hasMore == false {
+                    print("No more!")
+                }
 				// process each photo
 				photosArray.forEach { photoObject in
                     
@@ -75,7 +79,7 @@ class APIClient {
                     
                     if let userData = photoObject["user"] as? [String: Any] {
                         
-                        let parsedUser = parseUserData(userData: userData)
+                        let parsedUser = parseUserDataHandler(userData: userData)
                         user = parsedUser
                     }
                     
@@ -84,13 +88,14 @@ class APIClient {
 
                     if let imagesData = photoObject["images"] as? Payload {
             
-                        images = parseImageData(imageData: imagesData)
+                        images = parseImageDataHandler(imageData: imagesData)
                     }
                     
                     photos.append(Photo(image: images, name: name, user: user))
 				}
                 
-				response = PagedPhotoReponse(currentPage: currentPage, totalPages: totalPages, totalItems: totalItems, photos: photos, hasMore: hasMore)
+                // TODO: Need to fix the hasMore bug, right now when there's no more it will crash, in the meantime it's manually set to true.
+				response = PagedPhotoReponse(currentPage: currentPage, totalPages: totalPages, totalItems: totalItems, photos: photos, hasMore: true)
 			}
 		} catch let error {
 			print("Error: \(error.localizedDescription)")
@@ -100,7 +105,7 @@ class APIClient {
 	}
     
     /// Parse the Image Data from a Payload object
-    private func parseImageData(imageData: Payload) -> [Image] {
+    private func parseImageDataHandler(imageData: Payload) -> [Image] {
         
         var images = [Image]()
         
@@ -116,24 +121,28 @@ class APIClient {
         return images
     }
     
-    private func parseUserData(userData: [String : Any]) -> User {
+    private func parseUserDataHandler(userData: [String : Any]) -> User {
         
         let id = userData["id"] as? Int ?? 0
         let firstName = userData["firstname"] as? String ?? ""
-        let lastName = userData["lastName"] as? String ?? ""
-        let fullName = userData["fullName"] as? String ?? ""
+        let lastName = userData["lastname"] as? String ?? ""
+        let fullName = userData["fullname"] as? String ?? ""
         let userPicURL = URL(string: userData["userpic_url"] as? String ?? "")
         let coverURL = URL(string: userData["cover_url"] as? String ?? "")
     
         var avatars: Avatars?
         
         if let avatarsURLS = userData["avatars"] as? [String: Any] {
+ 
+            let tinyData = avatarsURLS["tiny"] as? [String: String] ?? [:]
+            let smallData = avatarsURLS["small"] as? [String: String] ?? [:]
+            let largeData = avatarsURLS["large"] as? [String: String] ?? [:]
+            let defaultData = avatarsURLS["default"] as? [String: String] ?? [:]
             
-            let tiny = URL(string: avatarsURLS["tiny"] as? String ?? "")
-            let small = URL(string: avatarsURLS["small"] as? String ?? "")
-            let large = URL(string: avatarsURLS["large"] as? String ?? "")
-            
-            let defaultURL = URL(string: avatarsURLS["default"] as? String ?? "")
+            let tiny = URL(string: tinyData["https"] ?? "")
+            let small = URL(string: smallData["https"] ?? "")
+            let large = URL(string: largeData["https"] ?? "")
+            let defaultURL = URL(string: defaultData["https"] ?? "")
             
             avatars = Avatars(tiny: tiny, small: small, large: large, defaultURL: defaultURL)
         }
