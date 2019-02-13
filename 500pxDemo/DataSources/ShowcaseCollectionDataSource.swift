@@ -57,7 +57,6 @@ extension ShowcaseCollectionDataSource: UICollectionViewDataSource {
 		return cell
 	}
     
-    
 }
 
 

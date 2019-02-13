@@ -12,10 +12,11 @@ struct Photo{
     
     let name: String
     let image: [Image]
+    let user: User?
     
-	
-    public init(image: [Image], name: String = "") {
+    public init(image: [Image], name: String = "", user: User?) {
         self.image = image
         self.name = name
+        self.user = user
 	}
 }

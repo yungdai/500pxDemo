@@ -33,7 +33,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
 			mainLabel.alpha = 1
             
             if let imageURL = photo.image.first?.url {
-                image.getImage(from: imageURL )
+                image.getImage(from: imageURL, contentMode: .scaleAspectFill)
             }
             
 			mainLabel.text =  photo.name

@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias Payload = [[String: Any]]
+
 class APIClient {
 
     let session: URLSession
@@ -20,7 +22,7 @@ class APIClient {
 	func fetchResponse(page: Int, completion: @escaping (Result<PagedPhotoReponse, HTTPResponseError>) -> Void) {
 
         
-        let urlString = "https://api.500px.com/v1/photos?feature=editors&page=\(page)&consumer_key=\(APIKey)/"
+        let urlString = "https://api.500px.com/v1/photos?feature=populatar&image_size=4&editors&page=\(page)&consumer_key=\(APIKey)/"
         let url = URL(string: urlString)!
         
         print("fetching page: \(page)")
@@ -59,24 +61,36 @@ class APIClient {
 			let photosArray = jsonData["photos"] as? Payload {
 				
 				var photos = [Photo]()
+                
+                // Since we get 20 at a time if there's less we're probably near the end
+                let hasMore = !(photos.count < 20)
 				
 				// process each photo
-				photosArray.forEach { objects in
+				photosArray.forEach { photoObject in
                     
-                    let name = objects["name"] as? String ?? ""
+                    let name = photoObject["name"] as? String ?? ""
                     
+                    // Get user Object
+                    var user: User?
+                    
+                    if let userData = photoObject["user"] as? [String: Any] {
+                        
+                        let parsedUser = parseUserData(userData: userData)
+                        user = parsedUser
+                    }
+                    
+                    // get the images urls
                     var images = [Image]()
-                    
-                    if let imagesData = objects["images"] as? Payload {
+
+                    if let imagesData = photoObject["images"] as? Payload {
             
                         images = parseImageData(imageData: imagesData)
                     }
                     
-                    photos.append(Photo(image: images, name: name))
+                    photos.append(Photo(image: images, name: name, user: user))
 				}
-
-				// TODO: Figure out hasMore pages
-				response = PagedPhotoReponse(currentPage: currentPage, totalPages: totalPages, totalItems: totalItems, photos: photos, hasMore: false)
+                
+				response = PagedPhotoReponse(currentPage: currentPage, totalPages: totalPages, totalItems: totalItems, photos: photos, hasMore: hasMore)
 			}
 		} catch let error {
 			print("Error: \(error.localizedDescription)")
@@ -90,16 +104,41 @@ class APIClient {
         
         var images = [Image]()
         
-        imageData.forEach { object in
+        imageData.forEach { imageObject in
 
-            let format = object["format"] as? String ?? ""
-            let size = object["size"] as? Int ?? 1
-            let httpsURL = object["https_url"] as? String ?? ""
-            let url = object["url"] as? String ?? ""
+            let format = imageObject["format"] as? String ?? ""
+            let size = imageObject["size"] as? Int ?? 1
+            let httpsURL = imageObject["https_url"] as? String ?? ""
+            let url = imageObject["url"] as? String ?? ""
             
             images.append(Image(format: format, size: size, httpsUrl: URL(string: httpsURL), url: URL(string: url)))
         }
         return images
+    }
+    
+    private func parseUserData(userData: [String : Any]) -> User {
+        
+        let id = userData["id"] as? Int ?? 0
+        let firstName = userData["firstname"] as? String ?? ""
+        let lastName = userData["lastName"] as? String ?? ""
+        let fullName = userData["fullName"] as? String ?? ""
+        let userPicURL = URL(string: userData["userpic_url"] as? String ?? "")
+        let coverURL = URL(string: userData["cover_url"] as? String ?? "")
+    
+        var avatars: Avatars?
+        
+        if let avatarsURLS = userData["avatars"] as? [String: Any] {
+            
+            let tiny = URL(string: avatarsURLS["tiny"] as? String ?? "")
+            let small = URL(string: avatarsURLS["small"] as? String ?? "")
+            let large = URL(string: avatarsURLS["large"] as? String ?? "")
+            
+            let defaultURL = URL(string: avatarsURLS["default"] as? String ?? "")
+            
+            avatars = Avatars(tiny: tiny, small: small, large: large, defaultURL: defaultURL)
+        }
+        
+        return User(id: id, firstName: firstName, lastName: lastName, fullName: fullName, userPicURL: userPicURL, coverURL: coverURL, avatars: avatars)
     }
 }
 
