@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1A0A679F2210F82500AE404A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0A679E2210F82500AE404A /* Default-568h@2x.png */; };
+		1A0BD65122160E9800055CE7 /* MainAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0BD65022160E9800055CE7 /* MainAppViewController.swift */; };
+		1A0BD65322160EB800055CE7 /* ShowcaseStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A0BD65222160EB800055CE7 /* ShowcaseStoryboard.storyboard */; };
 		1A7C48B02210803700014934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C48AF2210803700014934 /* AppDelegate.swift */; };
 		1A7C48B22210803700014934 /* ShowcaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C48B12210803700014934 /* ShowcaseViewController.swift */; };
 		1A7C48B52210803700014934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A7C48B32210803700014934 /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 /* Begin PBXFileReference section */
 		1A0A679E2210F82500AE404A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1A0A67A02210FA8600AE404A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A0BD65022160E9800055CE7 /* MainAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppViewController.swift; sourceTree = "<group>"; };
+		1A0BD65222160EB800055CE7 /* ShowcaseStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowcaseStoryboard.storyboard; sourceTree = "<group>"; };
 		1A7C48AC2210803700014934 /* 500pxDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 500pxDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7C48AF2210803700014934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A7C48B12210803700014934 /* ShowcaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseViewController.swift; sourceTree = "<group>"; };
@@ -135,11 +139,11 @@
 			isa = PBXGroup;
 			children = (
 				1A8B476622137F6200297543 /* Extensions */,
+				9F6F20662211ECCB00A13803 /* ViewModels */,
 				1A7C48ED2210A34600014934 /* Models */,
 				1A8B4767221388AA00297543 /* DataSources */,
 				1A7C48E12210826D00014934 /* Networking */,
 				9F6F205D2211E65800A13803 /* Views */,
-				9F6F20662211ECCB00A13803 /* ViewModels */,
 				1A7C48E22210827600014934 /* Resources */,
 				1A7C48AF2210803700014934 /* AppDelegate.swift */,
 				1A0A67A02210FA8600AE404A /* Info.plist */,
@@ -226,11 +230,13 @@
 		9F6F205D2211E65800A13803 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9F6F20622211E72C00A13803 /* MasterCollectionViewController.swift */,
+				1A0BD65022160E9800055CE7 /* MainAppViewController.swift */,
 				9F6F2069221207B500A13803 /* Cells */,
 				1A7C48B12210803700014934 /* ShowcaseViewController.swift */,
 				1A7C48B32210803700014934 /* Main.storyboard */,
 				9F6F20602211E6ED00A13803 /* CollectionComponents.storyboard */,
-				9F6F20622211E72C00A13803 /* MasterCollectionViewController.swift */,
+				1A0BD65222160EB800055CE7 /* ShowcaseStoryboard.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -359,6 +365,7 @@
 				1A0A679F2210F82500AE404A /* Default-568h@2x.png in Resources */,
 				1A7C48B72210803800014934 /* Assets.xcassets in Resources */,
 				9F6F20612211E6ED00A13803 /* CollectionComponents.storyboard in Resources */,
+				1A0BD65322160EB800055CE7 /* ShowcaseStoryboard.storyboard in Resources */,
 				1A7C48B52210803700014934 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +395,7 @@
 				1A7C48E82210853700014934 /* HTTPResult.swift in Sources */,
 				1A7C48EA2210857B00014934 /* URLRequest.swift in Sources */,
 				1A7C48B22210803700014934 /* ShowcaseViewController.swift in Sources */,
+				1A0BD65122160E9800055CE7 /* MainAppViewController.swift in Sources */,
 				1A7C48DF2210807C00014934 /* APIKey.swift in Sources */,
 				1A7C48E4221082E800014934 /* HTTPURLResponse.swift in Sources */,
 				1A7C48EF2210A3D100014934 /* PagedPhotoReponse.swift in Sources */,
