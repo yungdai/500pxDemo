@@ -20,13 +20,10 @@ class APIClient {
 	
 	/// Fetch a Response object from the server
 	func fetchResponse(page: Int, completion: @escaping (Result<PagedPhotoReponse, HTTPResponseError>) -> Void) {
-
         
         let urlString = "https://api.500px.com/v1/photos?feature=populatar&image_size=4&editors&page=\(page)&consumer_key=\(APIKey)/"
         let url = URL(string: urlString)!
-        
-        print("fetching page: \(page)")
-        
+
         let urlRequest = URLRequest(url: url)
 
 		session.dataTask(with: urlRequest) { data, response, error in
@@ -61,10 +58,11 @@ class APIClient {
 			let photosArray = jsonData["photos"] as? Payload {
 				
 				var photos = [Photo]()
-                
+
+                print("Total item: \(totalItems)" )
                 // Since we get 20 at a time if there's less we're probably near the end
                 // TODO: See notes below this causes a crash right now and will need to be fix
-                let hasMore = !(photos.count < 20)
+                let hasMore = (currentPage < totalItems) ? true : false
 				
                 if hasMore == false {
                     print("No more!")

@@ -135,11 +135,11 @@
 			isa = PBXGroup;
 			children = (
 				1A8B476622137F6200297543 /* Extensions */,
+				9F6F20662211ECCB00A13803 /* ViewModels */,
 				1A7C48ED2210A34600014934 /* Models */,
 				1A8B4767221388AA00297543 /* DataSources */,
 				1A7C48E12210826D00014934 /* Networking */,
 				9F6F205D2211E65800A13803 /* Views */,
-				9F6F20662211ECCB00A13803 /* ViewModels */,
 				1A7C48E22210827600014934 /* Resources */,
 				1A7C48AF2210803700014934 /* AppDelegate.swift */,
 				1A0A67A02210FA8600AE404A /* Info.plist */,
