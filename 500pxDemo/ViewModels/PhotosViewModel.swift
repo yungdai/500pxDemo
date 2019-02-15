@@ -20,7 +20,7 @@ final class PhotosViewModel {
 	
 	private var photos: [Photo] = []
 	private(set) var currentPage = 1
-	private(set) var totalCount = 0
+    private(set) var totalCount = 0
 	private var isFetchInProgress = false
 	
 	let apiClient = APIClient()
@@ -74,12 +74,10 @@ final class PhotosViewModel {
 					self.totalCount = response.totalItems
 					self.photos.append(contentsOf: response.photos)
 					
-					if response.page > 1 {
+					if response.currentPage > 1 {
 						let indexPathsToReload = self.calculateIndexPathsToReload(from: response.photos)
 						self.delegate?.onFetchCompleted(with: indexPathsToReload)
 					} else {
-                        
-                        print("none")
                         self.delegate?.onFetchCompleted(with: .none)
 					}
 					

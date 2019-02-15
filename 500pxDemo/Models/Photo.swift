@@ -8,15 +8,13 @@
 
 import Foundation
 
-struct Photo{
+struct Photo: Decodable {
     
     let name: String
-    let image: [Image]
-    let user: User?
+    let images: [Image]
+    let user: User
     
-    public init(image: [Image], name: String = "", user: User?) {
-        self.image = image
-        self.name = name
-        self.user = user
-	}
+    enum CodingKeys: String, CodingKey {
+        case name, images, user
+    }
 }

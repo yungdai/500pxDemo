@@ -35,17 +35,18 @@ class PhotoCollectionViewCell: UICollectionViewCell {
 			mainLabel.alpha = 1
             avatar.alpha = 1
             autherNameLabel.alpha = 1
-            
-            if let imageURL = photo.image.first?.url {
-                image.getImage(from: imageURL, contentMode: .scaleAspectFill)
+
+            if let imageURLString = photo.images.first?.urlString {
+                image.getImage(from: URL(string: imageURLString)!)
+            }
+
+            if let avatarURLString = photo.user.avatars.smallURLString["https"] {
+                avatar.getImage(from: URL(string: avatarURLString)!)
             }
             
-            if let avatarURL = photo.user?.avatars?.small {
-                avatar.getImage(from: avatarURL)
-                avatar.convertToCircle()
-            }
-            
-            autherNameLabel.text = photo.user?.fullName
+            avatar.convertToCircle()
+
+            autherNameLabel.text = photo.user.fullName
 			mainLabel.text =  photo.name
             
             // round corners of the cell to make it a little bit softer

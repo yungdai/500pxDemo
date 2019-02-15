@@ -8,24 +8,23 @@
 
 import Foundation
 
-struct User {
+struct User: Decodable {
 
     let id: Int
     let firstName: String
-    let lastName: String
+    let lastName: String?
     let fullName: String
-    let userPicURL: URL?
-    let coverURL: URL?
-    let avatars: Avatars?
+    let userPicURLString: String?
+    let coverURLString: String?
+    let avatars: Avatars
     
-    init(id: Int, firstName: String = "", lastName: String = "", fullName: String = "", userPicURL: URL?, coverURL: URL?, avatars: Avatars?) {
-        
-        self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
-        self.fullName = fullName
-        self.userPicURL = userPicURL
-        self.coverURL = coverURL
-        self.avatars = avatars
+    enum CodingKeys: String, CodingKey {
+        case id
+        case avatars
+        case firstName = "firstname"
+        case lastName = "lastname"
+        case fullName = "fullname"
+        case userPicURLString = "userpic_url"
+        case coverURLString = "cover_url"
     }
 }

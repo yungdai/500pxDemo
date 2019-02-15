@@ -8,19 +8,17 @@
 
 import Foundation
 
-struct Image {
+struct Image: Decodable {
     
     let format: String
     let size: Int
-    let httpsUrl: URL?
-    let url: URL?
+    let urlString: String
+    let httpsURLString: String
     
-    // Not sure if format will change from jpeg but it's a possibility
-    public init(format: String = "jpeg", size: Int = 2, httpsUrl: URL? = nil, url: URL? = nil) {
+    enum CodingKeys: String, CodingKey {
         
-        self.format = format
-        self.size = size
-        self.httpsUrl = httpsUrl
-        self.url = url
+        case format, size
+        case urlString = "url"
+        case httpsURLString = "https_url"
     }
 }

@@ -18,6 +18,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivh-6u-Met">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hbi-Hu-MYb">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bvl-3H-WgC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="94a-oR-SmQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="light"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpz-9V-Lgq">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
@@ -27,13 +48,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ivh-6u-Met" firstAttribute="top" secondItem="sAZ-5Q-Ixw" secondAttribute="top" id="2eb-Jc-snZ"/>
                             <constraint firstItem="cpz-9V-Lgq" firstAttribute="top" secondItem="sAZ-5Q-Ixw" secondAttribute="top" id="FJc-c8-TpG"/>
                             <constraint firstItem="5ol-f5-SVN" firstAttribute="bottom" secondItem="cpz-9V-Lgq" secondAttribute="bottom" id="W3M-XM-LXm"/>
                             <constraint firstItem="5ol-f5-SVN" firstAttribute="trailing" secondItem="cpz-9V-Lgq" secondAttribute="trailing" id="a7v-jQ-OvQ"/>
+                            <constraint firstAttribute="trailing" secondItem="ivh-6u-Met" secondAttribute="trailing" id="atm-XL-sD8"/>
+                            <constraint firstAttribute="bottom" secondItem="ivh-6u-Met" secondAttribute="bottom" id="b4y-ri-hEX"/>
                             <constraint firstItem="cpz-9V-Lgq" firstAttribute="leading" secondItem="5ol-f5-SVN" secondAttribute="leading" id="jsq-mr-r2L"/>
+                            <constraint firstItem="ivh-6u-Met" firstAttribute="leading" secondItem="sAZ-5Q-Ixw" secondAttribute="leading" id="znV-te-RVq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5ol-f5-SVN"/>
                     </view>
+                    <connections>
+                        <outlet property="blurView" destination="ivh-6u-Met" id="KNP-Wu-3KP"/>
+                        <outlet property="showcaseContainer" destination="cpz-9V-Lgq" id="XSz-U8-VQA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q2e-Nz-INY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

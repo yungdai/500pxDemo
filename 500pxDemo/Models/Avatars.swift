@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct Avatars {
+struct Avatars: Decodable {
     
-    let tiny: URL?
-    let small: URL?
-    let large: URL?
-    let defaultURL: URL?
+    let tinyURLString: [String: String]
+    let smallURLString: [String: String]
+    let largeURLString: [String: String]
+    let defaultURLString: [String: String]
     
-    init(tiny: URL?, small: URL?, large: URL?, defaultURL: URL?) {
+    enum CodingKeys: String, CodingKey {
         
-        self.tiny = tiny
-        self.small = small
-        self.large = large
-        self.defaultURL = defaultURL
+        case tinyURLString = "tiny"
+        case smallURLString = "small"
+        case largeURLString = "large"
+        case defaultURLString = "default"
     }
 }

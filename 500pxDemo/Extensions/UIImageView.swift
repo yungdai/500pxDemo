@@ -11,7 +11,7 @@ import UIKit
 extension UIImageView {
     
     // Helper to get image fromURL
-    func getImage(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+    func getImage(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFill) {
         
         contentMode = mode
         URLSession.shared.dataTask(with: url) { data, response, error in

@@ -8,20 +8,18 @@
 
 import Foundation
 
-struct PagedPhotoReponse {
+struct PagedPhotoReponse: Decodable {
     
-    let page: Int
+    let currentPage: Int
     let totalPages: Int
     let totalItems: Int
-	let hasMore: Bool
     let photos: [Photo]
-	
-	public init(currentPage: Int = 0, totalPages: Int = 0, totalItems: Int = 0, photos: [Photo] = [], hasMore: Bool = false) {
-		
-		self.page = currentPage
-		self.totalPages = totalPages
-		self.totalItems = totalItems
-		self.photos = photos
-		self.hasMore = hasMore
-	}
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case currentPage = "current_page"
+        case totalPages = "total_pages"
+        case totalItems = "total_items"
+        case photos
+    }
 }
