@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		1A0A679F2210F82500AE404A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0A679E2210F82500AE404A /* Default-568h@2x.png */; };
 		1A0BD65122160E9800055CE7 /* MainAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0BD65022160E9800055CE7 /* MainAppViewController.swift */; };
-		1A0BD65322160EB800055CE7 /* ShowcaseStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A0BD65222160EB800055CE7 /* ShowcaseStoryboard.storyboard */; };
+		1A0BD65322160EB800055CE7 /* Showcase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A0BD65222160EB800055CE7 /* Showcase.storyboard */; };
+		1A0BD66222189C3700055CE7 /* PhotoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0BD66122189C3700055CE7 /* PhotoDetailsViewController.swift */; };
+		1A0BD66422189CA500055CE7 /* RoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0BD66322189CA500055CE7 /* RoundedCornerView.swift */; };
+		1A0BD6682218A07000055CE7 /* GripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0BD6672218A07000055CE7 /* GripView.swift */; };
+		1A0BD66B2218A27D00055CE7 /* PhotoDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A0BD66A2218A27D00055CE7 /* PhotoDetails.storyboard */; };
 		1A7C48B02210803700014934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C48AF2210803700014934 /* AppDelegate.swift */; };
 		1A7C48B22210803700014934 /* ShowcaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7C48B12210803700014934 /* ShowcaseViewController.swift */; };
 		1A7C48B52210803700014934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A7C48B32210803700014934 /* Main.storyboard */; };
@@ -57,7 +61,11 @@
 		1A0A679E2210F82500AE404A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1A0A67A02210FA8600AE404A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A0BD65022160E9800055CE7 /* MainAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppViewController.swift; sourceTree = "<group>"; };
-		1A0BD65222160EB800055CE7 /* ShowcaseStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowcaseStoryboard.storyboard; sourceTree = "<group>"; };
+		1A0BD65222160EB800055CE7 /* Showcase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Showcase.storyboard; sourceTree = "<group>"; };
+		1A0BD66122189C3700055CE7 /* PhotoDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewController.swift; sourceTree = "<group>"; };
+		1A0BD66322189CA500055CE7 /* RoundedCornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornerView.swift; sourceTree = "<group>"; };
+		1A0BD6672218A07000055CE7 /* GripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripView.swift; sourceTree = "<group>"; };
+		1A0BD66A2218A27D00055CE7 /* PhotoDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoDetails.storyboard; sourceTree = "<group>"; };
 		1A7C48AC2210803700014934 /* 500pxDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 500pxDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7C48AF2210803700014934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A7C48B12210803700014934 /* ShowcaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +122,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0BD66522189D0B00055CE7 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1A7C48B12210803700014934 /* ShowcaseViewController.swift */,
+				1A0BD66122189C3700055CE7 /* PhotoDetailsViewController.swift */,
+				9F6F20622211E72C00A13803 /* MasterCollectionViewController.swift */,
+				1A0BD65022160E9800055CE7 /* MainAppViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		1A0BD66622189D1C00055CE7 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				1A7C48B32210803700014934 /* Main.storyboard */,
+				9F6F20602211E6ED00A13803 /* CollectionComponents.storyboard */,
+				1A0BD65222160EB800055CE7 /* Showcase.storyboard */,
+				1A0BD66A2218A27D00055CE7 /* PhotoDetails.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		1A0BD6692218A13E00055CE7 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A0BD6672218A07000055CE7 /* GripView.swift */,
+				1A0BD66322189CA500055CE7 /* RoundedCornerView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		1A7C48A32210803600014934 = {
 			isa = PBXGroup;
 			children = (
@@ -230,13 +269,10 @@
 		9F6F205D2211E65800A13803 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9F6F20622211E72C00A13803 /* MasterCollectionViewController.swift */,
-				1A0BD65022160E9800055CE7 /* MainAppViewController.swift */,
+				1A0BD66522189D0B00055CE7 /* View Controllers */,
+				1A0BD6692218A13E00055CE7 /* Custom Views */,
 				9F6F2069221207B500A13803 /* Cells */,
-				1A7C48B12210803700014934 /* ShowcaseViewController.swift */,
-				1A7C48B32210803700014934 /* Main.storyboard */,
-				9F6F20602211E6ED00A13803 /* CollectionComponents.storyboard */,
-				1A0BD65222160EB800055CE7 /* ShowcaseStoryboard.storyboard */,
+				1A0BD66622189D1C00055CE7 /* Storyboards */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -365,7 +401,8 @@
 				1A0A679F2210F82500AE404A /* Default-568h@2x.png in Resources */,
 				1A7C48B72210803800014934 /* Assets.xcassets in Resources */,
 				9F6F20612211E6ED00A13803 /* CollectionComponents.storyboard in Resources */,
-				1A0BD65322160EB800055CE7 /* ShowcaseStoryboard.storyboard in Resources */,
+				1A0BD66B2218A27D00055CE7 /* PhotoDetails.storyboard in Resources */,
+				1A0BD65322160EB800055CE7 /* Showcase.storyboard in Resources */,
 				1A7C48B52210803700014934 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +430,7 @@
 			files = (
 				1A7C48EC2210870800014934 /* APIClient.swift in Sources */,
 				1A7C48E82210853700014934 /* HTTPResult.swift in Sources */,
+				1A0BD66422189CA500055CE7 /* RoundedCornerView.swift in Sources */,
 				1A7C48EA2210857B00014934 /* URLRequest.swift in Sources */,
 				1A7C48B22210803700014934 /* ShowcaseViewController.swift in Sources */,
 				1A0BD65122160E9800055CE7 /* MainAppViewController.swift in Sources */,
@@ -400,6 +438,7 @@
 				1A7C48E4221082E800014934 /* HTTPURLResponse.swift in Sources */,
 				1A7C48EF2210A3D100014934 /* PagedPhotoReponse.swift in Sources */,
 				9F6F206B2212081800A13803 /* PhotoCollectionViewCell.swift in Sources */,
+				1A0BD6682218A07000055CE7 /* GripView.swift in Sources */,
 				1A7C48E62210839F00014934 /* HTTPResponseError.swift in Sources */,
 				1A7C48F12210A61500014934 /* Photo.swift in Sources */,
 				9F6F20652211EA9300A13803 /* ShowcaseCollectionDataSource.swift in Sources */,
@@ -407,6 +446,7 @@
 				1A8B476B2213A21C00297543 /* Avatars.swift in Sources */,
 				9F6F20682211ECF300A13803 /* PhotosViewModel.swift in Sources */,
 				1A8B4763221371FB00297543 /* Image.swift in Sources */,
+				1A0BD66222189C3700055CE7 /* PhotoDetailsViewController.swift in Sources */,
 				1A7C48B02210803700014934 /* AppDelegate.swift in Sources */,
 				1A8B476522137F5C00297543 /* UIImageView.swift in Sources */,
 				9F6F20632211E72C00A13803 /* MasterCollectionViewController.swift in Sources */,
