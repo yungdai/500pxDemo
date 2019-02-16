@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoCollectionViewCell: UICollectionViewCell {
+final class PhotoCollectionViewCell: UICollectionViewCell {
 	
 	@IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var image: UIImageView!
@@ -20,9 +20,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         configure(with: .none)
 	}
-	
-	
-//     TODO: Impliment later to reset anything in the cell as it comes in and out of the collectionView
+
     override func awakeFromNib() {
         super.awakeFromNib()
         configure(with: .none)

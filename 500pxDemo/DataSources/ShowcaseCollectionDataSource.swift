@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShowcaseCollectionDataSource: NSObject, UICollectionViewDelegate {
+final class ShowcaseCollectionDataSource: NSObject, UICollectionViewDelegate {
     
     private enum CellIdentifiers {
         static let showCaseCell = "showCaseCell"
@@ -20,59 +20,7 @@ class ShowcaseCollectionDataSource: NSObject, UICollectionViewDelegate {
     weak var collectionView: UICollectionView?
     
     var hasLoaded = false
-    var previousTotal: Int = 0 {
-        didSet {
-            
-            if hasLoaded {
-                
-                // check to see if the previousTotal is different from the newValue
-                if oldValue != previousTotal {
-                    
-                    //  find out if the difference is going to be greater or less than the previous value
-                    if oldValue > previousTotal {
-                        
-                        // if it's greater than find out how many more itemsToInsert to the collectionVew
-                        let needToRemoveValue = (oldValue - previousTotal) - 1
-                        
-                        // find out where the starting indexValue toREmove
-                        let startIndexPathToRemove = previousTotal - needToRemoveValue
-                        
-                        var indexPathsToRemove = [IndexPath]()
-                        for i in startIndexPathToRemove..<previousTotal{
-                            
-                            indexPathsToRemove.append(IndexPath(item: i, section: 0))
-                        }
-                        
-                        collectionView?.performBatchUpdates({
-                            collectionView?.deleteItems(at: indexPathsToRemove)
-                        }, completion: nil)
 
-                    } else {
-                        // if it's less than find out how many items to remove from the collectionView
-                        let needToAddValue = (previousTotal - oldValue)
-                        
-                        // find out what's the new ending indexPath item value
-                        let newEndIndexPathValue = previousTotal + needToAddValue
-                        
-                        // create the indexPaths that are needed
-                        var indexPathsToAdd = [IndexPath]()
-                        
-                        for i in (previousTotal + 1)...newEndIndexPathValue {
-                            
-                            indexPathsToAdd.append(IndexPath(row: i, section: 0))
-                        }
-                        
-                        // perform the update
-                        collectionView?.performBatchUpdates({
-                            collectionView?.insertItems(at: indexPathsToAdd)
-                        }, completion: nil)
-                    }
-                }
-            }
-        }
-    }
-
-    
     required init(sourceVC: UIViewController, collectionView: UICollectionView) {
         super.init()
         
@@ -90,9 +38,8 @@ extension ShowcaseCollectionDataSource: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         guard let totalCount = photosViewModel?.totalCount else { return 0 }
-        print("running numberOfItemInSection \(totalCount)")
+        print("number of items: \(totalCount)")
 
-        previousTotal = totalCount
         return totalCount
     }
     
@@ -103,7 +50,6 @@ extension ShowcaseCollectionDataSource: UICollectionViewDataSource {
         // if no photos is received for the current cell, configure for empty cell
         if isLoadingCell(for: indexPath) {
             cell.configure(with: .none)
-            print("No cell")
         } else {
             
             // pass the photo to be configured at the cell to be processed
@@ -150,11 +96,6 @@ extension ShowcaseCollectionDataSource: PhotosViewModelDelegate {
     
     func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?) {
         
-        
-        if previousTotal != 0 {
-            hasLoaded = true
-        }
-        
         guard let newIndexPathsToReload = newIndexPathsToReload else {
             
             self.collectionView?.reloadData()
@@ -191,11 +132,7 @@ private extension ShowcaseCollectionDataSource {
     
     /// Use to determine if the cell at the indexPath is beyond the count of photos you have recieved so far.
     func isLoadingCell(for indexPath: IndexPath) -> Bool {
-        
-        let answer = indexPath.row >= photosViewModel.currentCount
-        
-        print("isLoadingCell: \(answer)")
-        
+
         return indexPath.row >= photosViewModel.currentCount
     }
     
@@ -203,15 +140,10 @@ private extension ShowcaseCollectionDataSource {
     func visibleIndexPathToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
         
         let indexPathsForVisibleRows = self.collectionView?.indexPathsForVisibleItems ?? []
-        
-        // TODO: This might be a good time to add/remove rows from the collectionView
 
         // create an Set of indexPaths by intersecting the indexPaths
         let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(indexPaths)
-        
-        print("indexPathsCount: \(indexPaths.count)")
-        print("visibleIndexPathsToReload Count: \(indexPathsIntersection.count)")
-        
+    
         return Array(indexPathsIntersection)
     }
 }

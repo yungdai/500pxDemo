@@ -10,7 +10,7 @@ import Foundation
 
 typealias Payload = [[String: Any]]
 
-class APIClient {
+final class APIClient {
 
     let session: URLSession
     

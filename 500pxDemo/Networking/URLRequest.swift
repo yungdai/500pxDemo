@@ -10,7 +10,6 @@ import Foundation
 
 typealias Parameters = [String: String]
 
-
 extension URLRequest {
     
     /// Use to encode a URL with Parameters returned from the API
