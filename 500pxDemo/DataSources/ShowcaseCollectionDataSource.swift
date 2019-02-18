@@ -37,10 +37,10 @@ extension ShowcaseCollectionDataSource: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        guard let totalCount = photosViewModel?.totalCount else { return 0 }
-        print("number of items: \(totalCount)")
+//        guard let totalCount = photosViewModel?.totalCount else { return 0 }
+        print("number of items: \(photosViewModel.totalCount)")
 
-        return totalCount
+        return photosViewModel.totalCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -82,14 +82,11 @@ extension ShowcaseCollectionDataSource: UICollectionViewDelegateFlowLayout {
 
 extension ShowcaseCollectionDataSource: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        
-        
+
         if indexPaths.contains(where: isLoadingCell) {
             photosViewModel.fetchPhotos()
         }
     }
-    
-    
 }
 
 extension ShowcaseCollectionDataSource: PhotosViewModelDelegate {
@@ -99,9 +96,7 @@ extension ShowcaseCollectionDataSource: PhotosViewModelDelegate {
         guard let newIndexPathsToReload = newIndexPathsToReload else {
             
             self.collectionView?.reloadData()
-            
-            // TODO:
-            // if the indexPath is hidden need to find a way to handle an empty collecdtion
+
             return
         }
         

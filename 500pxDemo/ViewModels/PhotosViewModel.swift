@@ -88,15 +88,12 @@ final class PhotosViewModel {
                         if let previousCount = self.previousCount,
                             previousCount != self.totalCount {
                             
-                            guard let collectionView = self.delegate?.collectionView else { return }
-                            collectionView.reloadData()
-                            self.previousCount = self.totalCount
-                            
+                            print("totalCount: \(self.totalCount), previousCount:\(previousCount)")
+                            self.adjustDataSourceSize(response: response)
+                            self.reloadNewIndexPathsFrom(response: response)
                         } else {
                             
-                            let indexPathsToReload = self.calculateIndexPathsToReload(from: response.photos)
-                            self.delegate?.onFetchCompleted(with: indexPathsToReload)
-                        }
+                            self.reloadNewIndexPathsFrom(response: response)                        }
 					} else {
                         self.delegate?.onFetchCompleted(with: .none)
 					}
@@ -107,6 +104,8 @@ final class PhotosViewModel {
     
     private func reloadNewIndexPathsFrom(response: PagedPhotoReponse) {
 
+        let indexPathsToReload = self.calculateIndexPathsToReload(from: response.photos)
+        self.delegate?.onFetchCompleted(with: indexPathsToReload)
     }
 	
 	/// Calculate the indexPaths for the last page of the photos recieved by the API.  Use to refresh only the changed content, instead of reloading the show collection.
@@ -117,4 +116,63 @@ final class PhotosViewModel {
 		
 		return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
 	}
+    
+    private func adjustDataSourceSize(response: PagedPhotoReponse) {
+
+        guard let previousCount = previousCount else { return }
+        (previousCount > totalCount) ? removeIndexPaths(response: response) : insertIndexPaths(response: response)
+        
+        print("adjusted sizing")
+    }
+    
+    private func removeIndexPaths(response: PagedPhotoReponse) {
+        
+        guard let collectionView = self.delegate?.collectionView else {
+            print("can't delete no collectionView")
+            return
+        }
+        
+        guard let previousCount = previousCount else { return }
+
+        // if there are less objects we need to remove them by starting at the how much less we need to
+        let startIndex = previousCount - (previousCount - totalCount)
+        let endIndex = previousCount - 1
+        let indexRange = Range(startIndex...endIndex)
+        
+        let indexPaths = indexRange.map { IndexPath(item: $0, section: 0) }
+        
+        self.previousCount = self.totalCount
+        collectionView.performBatchUpdates({
+            collectionView.deleteItems(at: indexPaths)
+        }) { _ in
+
+            self.reloadNewIndexPathsFrom(response: response)
+        }
+    }
+    
+    private func insertIndexPaths(response: PagedPhotoReponse) {
+        
+        guard let collectionView = self.delegate?.collectionView else {
+            
+            print("can't insert no collectionView")
+            return
+        }
+        
+        guard let previousCount = previousCount else { return }
+        
+        // if there are more we need to add more indexPaths to the data source
+        let startIndex = collectionView.numberOfItems(inSection: 0)
+        
+        // get the difference
+        let difference = (totalCount - previousCount) - 1
+        // create the endIndexfrom the differenece
+        let endIndex = startIndex + difference
+        let indexRange = Range(startIndex...endIndex)
+        let indexPaths = indexRange.map { IndexPath(item: $0, section: 0) }
+
+        self.previousCount = self.totalCount
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: indexPaths)
+        }, completion: nil)
+    }
 }

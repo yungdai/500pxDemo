@@ -32,6 +32,8 @@ final class APIClient {
 			guard let httpResponse = response as? HTTPURLResponse, httpResponse.isSuccessfullStatusCode, let data = data else {
 				completion(Result.error(HTTPResponseError.decoding))
                 
+                // invalidate and cancel the session
+                self.session.invalidateAndCancel()
 				return
 			}
 			
