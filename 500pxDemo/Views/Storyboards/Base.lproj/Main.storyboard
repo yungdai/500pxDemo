@@ -62,7 +62,7 @@
                     <connections>
                         <outlet property="blurView" destination="ivh-6u-Met" id="KNP-Wu-3KP"/>
                         <outlet property="showcaseContainer" destination="cpz-9V-Lgq" id="XSz-U8-VQA"/>
-                        <segue destination="tEW-fd-lSm" kind="presentation" identifier="showPhotoDetailsVC" id="PAl-rL-x1m"/>
+                        <segue destination="tEW-fd-lSm" kind="presentation" identifier="showPhotoDetailsVCSegue" id="PAl-rL-x1m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q2e-Nz-INY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -72,15 +72,15 @@
         <!--PhotoDetails-->
         <scene sceneID="VIc-aP-nwG">
             <objects>
-                <viewControllerPlaceholder storyboardName="PhotoDetails" id="tEW-fd-lSm" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dc0-qc-Zxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="photoDetailsVC" storyboardName="PhotoDetails" id="tEW-fd-lSm" sceneMemberID="viewController"/>
             </objects>
-            <point key="canvasLocation" x="-728" y="-117"/>
+            <point key="canvasLocation" x="-728" y="-111"/>
         </scene>
-        <!--ShowcaseStoryboard-->
+        <!--Showcase-->
         <scene sceneID="KsU-fP-1MA">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="showcaseNavVC" storyboardName="ShowcaseStoryboard" id="v6w-Ls-a0t" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="showcaseNavVC" storyboardName="Showcase" id="v6w-Ls-a0t" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WCu-kV-YB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="86" y="-566"/>

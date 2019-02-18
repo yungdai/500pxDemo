@@ -8,25 +8,27 @@
 
 import UIKit
 
-
-let showcaseNavVC = "showcaseNavVC"
-let showcaseVCSegue = "showcaseVCSegue"
-
 typealias Handler = () -> Void
 
 final class MainAppViewController: UIViewController {
 
     // MARK: Properties
-    private weak var showcaseNavVC: UINavigationController?
+    private var showcaseNavVC: UINavigationController?
     private var blurAnimator: UIViewPropertyAnimator!
     private var cornerAnimator: UIViewPropertyAnimator!
     
-    @IBOutlet weak var showcaseContainer: UIView!
+    let showcaseVC = "showcaseVCSegue"
+    let showPhotoDetailsVC = "showPhotoDetailsVCSegue"
+    
+    @IBOutlet var showcaseContainer: UIView!
     @IBOutlet weak var blurView: UIVisualEffectView!
+    
+    var photosDetailsManager: PhotoDetailsManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        photosDetailsManager = PhotoDetailsManager(showcaseContainer: showcaseContainer)
         resetAnimations()
     }
     
@@ -102,16 +104,29 @@ final class MainAppViewController: UIViewController {
         blurAnimator.pausesOnCompletion = true
         cornerAnimator.pausesOnCompletion = true
     }
+    
+    func showPhotoDetailsVC(photo: Photo) {
+
+        // need to activate the way it shrinks the container contents
+        performSegue(withIdentifier: showPhotoDetailsVC, sender: self)
+    }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         // init the showcaseNavVC Container
-        if segue.identifier == showcaseVCSegue {
+        if segue.identifier == showcaseVC {
             
-            guard let showcaseNavVC = segue.destination as? UINavigationController else { return }
-            
-            self.showcaseNavVC = showcaseNavVC
+            if let showcaseNavVC = segue.destination as? UINavigationController {
+                self.showcaseNavVC = showcaseNavVC
+            }
+        }
+        
+        if segue.identifier == showPhotoDetailsVC {
+
+            if let photoDetailsVC = segue.destination as? PhotoDetailsViewController {
+                photosDetailsManager?.setPhotoDetailsVC(photoDetailsVC: photoDetailsVC)
+            }
         }
     }
 }

@@ -9,6 +9,10 @@
 import UIKit
 
 final class PhotoDetailsViewController: UIViewController {
+    
+    weak var photosDetailsManager: PhotoDetailsManager?
+
+    var photo: Photo?
 
     override func viewDidLoad() {
         super.viewDidLoad()

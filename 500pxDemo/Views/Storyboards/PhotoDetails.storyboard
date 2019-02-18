@@ -25,9 +25,6 @@
                                     <constraint firstAttribute="height" constant="3" id="94m-iV-BuZ"/>
                                     <constraint firstAttribute="width" constant="50" id="NMd-ia-e8r"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="NO"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3EY-w8-tio" customClass="RoundedCornerView" customModule="_00pxDemo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="83.5" width="375" height="583.5"/>
