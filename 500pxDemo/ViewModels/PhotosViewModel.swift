@@ -78,8 +78,7 @@ final class PhotosViewModel {
                     if self.previousCount == nil {
                         self.previousCount = self.totalCount
                     }
-                    
-                    // TODO:? wind out what is done first or last when calculating the szing.
+
 					self.photos.append(contentsOf: response.photos)
 
 					if response.currentPage > 1 {

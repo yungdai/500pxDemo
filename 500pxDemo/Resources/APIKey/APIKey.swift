@@ -8,4 +8,4 @@
 
 import Foundation
 
-let APIKey = <#String#>
+let APIKey = "P7LLhKkPAnPUpbfAXk3Jq2iDjYmCx87zgfEDxQVS"

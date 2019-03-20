@@ -11,6 +11,7 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 final class MasterCollectionViewController: UICollectionViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

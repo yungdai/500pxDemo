@@ -18,7 +18,7 @@ final class ShowcaseCollectionDataSource: NSObject, UICollectionViewDelegate {
     
     weak var sourceVC: UIViewController?
     weak var collectionView: UICollectionView?
-    
+    let photoDetailsManager = PhotoDetailsManager.shared
     var hasLoaded = false
 
     required init(sourceVC: UIViewController, collectionView: UICollectionView) {
@@ -37,7 +37,6 @@ extension ShowcaseCollectionDataSource: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-//        guard let totalCount = photosViewModel?.totalCount else { return 0 }
         print("number of items: \(photosViewModel.totalCount)")
 
         return photosViewModel.totalCount
@@ -54,6 +53,8 @@ extension ShowcaseCollectionDataSource: UICollectionViewDataSource {
             
             // pass the photo to be configured at the cell to be processed
             cell.configure(with: photosViewModel.photo(at: indexPath.item))
+
+            photoDetailsManager.setCachedData(indexPath: indexPath, photo: photosViewModel.photo(at: indexPath.item))
         }
         
         return cell
@@ -76,6 +77,13 @@ extension ShowcaseCollectionDataSource: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        
+        photoDetailsManager.showPhotoDetails(with: photosViewModel.photo(at: indexPath.item))
+        photoDetailsManager.animateBlur()
     }
 }
 

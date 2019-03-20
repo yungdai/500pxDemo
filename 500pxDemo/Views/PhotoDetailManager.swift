@@ -8,16 +8,34 @@
 
 import UIKit
 
-final class PhotoDetailsManager: NSObject {
+final class PhotoDetailsManager {
     
+    static let shared = PhotoDetailsManager()
+
     private var touchYPosition: CGFloat = 0
     private var photoDetailsHeight: CGFloat?
     
     private weak var photoDetailsVC: UIViewController?
     private weak var showcaseContainer: UIView?
+    private weak var mainAppVC: MainAppViewController?
+    private var cachedData: [IndexPath: Photo] = [:]
     
-    init(showcaseContainer: UIView?) {
-        self.showcaseContainer = showcaseContainer
+    
+    func setCachedData(indexPath: IndexPath, photo: Photo) {
+        cachedData[indexPath] = photo
+    }
+    
+    func setShowCaseContainer(view: UIView) {
+        self.showcaseContainer = view
+    }
+    
+    func showPhotoDetails(with photo: Photo) {
+        guard let mainAppVC =  self.mainAppVC else { return }
+       mainAppVC.showPhotoDetailsVC(with: photo)
+    }
+    
+    func setMainAppVC(mainAppVC: MainAppViewController) {
+        self.mainAppVC = mainAppVC
     }
     
     func setPhotoDetailsVC(photoDetailsVC: PhotoDetailsViewController) {
@@ -26,6 +44,12 @@ final class PhotoDetailsManager: NSObject {
     
     private func getFractionForPosition(position: CGFloat, forHeight height: CGFloat) -> CGFloat {
         return (1.0 / height) * position
+    }
+
+    func animateBlur() {
+        
+        guard let mainAppVC = mainAppVC else { return }
+        mainAppVC.animateBlur()
     }
     
     /// Use to interactivly transform the managing VC when the photo details appears
@@ -62,8 +86,7 @@ final class PhotoDetailsManager: NSObject {
         case .changed:
             
             guard let photoDetailsVC = photoDetailsVC,
-            let photoDetailsHeight = photoDetailsHeight else { return }
-
+                let photoDetailsHeight = photoDetailsHeight else { return }
             
             // need to guarentee touchYPosition is < 0
             
@@ -96,8 +119,9 @@ final class PhotoDetailsManager: NSObject {
         
     }
     
-    private func dismissPhotoDetailsVC() {
+    func dismissPhotoDetailsVC() {
         guard let photoDetailsVC = photoDetailsVC else { return }
+        mainAppVC?.reverseBlurToClear()
         photoDetailsVC.dismiss(animated: true)
     }
     

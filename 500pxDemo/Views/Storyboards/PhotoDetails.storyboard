@@ -71,15 +71,22 @@
                             <constraint firstItem="3EY-w8-tio" firstAttribute="height" secondItem="wQa-II-bqG" secondAttribute="height" multiplier="0.875" id="GL0-QL-v7a"/>
                             <constraint firstItem="3EY-w8-tio" firstAttribute="leading" secondItem="8PD-YO-GbN" secondAttribute="leading" id="Owq-sr-pxy"/>
                             <constraint firstItem="3EY-w8-tio" firstAttribute="top" secondItem="1yy-0W-PBP" secondAttribute="bottom" constant="5" id="Xfo-8K-ZPn"/>
-                            <constraint firstItem="3EY-w8-tio" firstAttribute="bottom" secondItem="8PD-YO-GbN" secondAttribute="bottom" id="fvl-6s-eRo"/>
+                            <constraint firstItem="3EY-w8-tio" firstAttribute="bottom" secondItem="wQa-II-bqG" secondAttribute="bottom" id="fvl-6s-eRo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8PD-YO-GbN"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jid-wG-D0k" appends="YES" id="BDM-zo-AiS"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xvo-UG-DMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="sZe-4I-V6S"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="2xm-Eh-RMC"/>
-                <tapGestureRecognizer id="jid-wG-D0k"/>
+                <tapGestureRecognizer id="jid-wG-D0k">
+                    <connections>
+                        <action selector="gripTapped:" destination="YEj-qx-uVx" id="NZJ-Nw-6hs"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-727.20000000000005" y="169.56521739130437"/>
         </scene>

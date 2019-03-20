@@ -10,7 +10,7 @@ import UIKit
 
 final class PhotoDetailsViewController: UIViewController {
     
-    weak var photosDetailsManager: PhotoDetailsManager?
+    let photosDetailsManager = PhotoDetailsManager.shared
 
     var photo: Photo?
 
@@ -20,7 +20,12 @@ final class PhotoDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func gripTapped(_ sender: Any) {
+        
+        photosDetailsManager.dismissPhotoDetailsVC()
 
+    }
+    
     /*
     // MARK: - Navigation
 
